@@ -1,7 +1,7 @@
 {
-  "name": "@freevuehub/fds",
-  "version": "0.0.30",
-  "description": "Freevuehub Design System",
+  "name": "@drx-lab/dds",
+  "version": "0.0.1",
+  "description": "",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "private": false,
@@ -13,17 +13,16 @@
   },
   "keywords": [
     "react",
-    "freevue",
     "design",
     "ui",
     "components"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/freevuehub/fds.git"
+    "url": "git+https://github.com/DRX-R-D/dds.git"
   },
   "author": "freevue",
-  "license": "MIT",
+  "license": "",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/react": "^11.5.0",

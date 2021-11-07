@@ -1,12 +1,6 @@
-import { ThemeProvider, GlobalProvider } from '~/lib'
-
 export const decorators = [
   Story => (
-    <ThemeProvider>
-      <GlobalProvider>
-        <Story />
-      </GlobalProvider>
-    </ThemeProvider>
+    <Story />
   ),
 ]
 

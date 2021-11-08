@@ -1,7 +1,7 @@
 {
   "name": "@drx-lab/dds",
   "version": "0.0.6",
-  "description": "",
+  "description": "DRX Design System",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "private": false,

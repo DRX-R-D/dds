@@ -1,6 +1,10 @@
+import { Style } from '~/component'
+
 export const decorators = [
   Story => (
-    <Story />
+    <Style>
+      <Story />
+    </Style>
   ),
 ]
 

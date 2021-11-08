@@ -16,6 +16,8 @@ demo
 .idea
 .storybook
 
+storybook-static
+
 jest.config.json
 rollup.config.json
 

@@ -1,3 +1,8 @@
 import React from 'react';
-declare const Card: React.FC;
+export interface IProps {
+    color?: string;
+    className?: string;
+    border?: boolean;
+}
+declare const Card: React.FC<IProps>;
 export default Card;

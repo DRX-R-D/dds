@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0'
 
-import Component  from './';
+import Component, { IProps } from './';
 
 export default {
   title: 'Component/UI/Button',
@@ -13,12 +13,12 @@ export default {
   ],
 } as Meta
 
-const Default: Story<any> = (args) => (
+const Default: Story<IProps> = (args) => (
   <Component {...args}>
     Click
   </Component>
 )
-const Template: Story<any> = () => {
+const Template: Story<IProps> = () => {
   return (
     <>
       <div className="mb-5">

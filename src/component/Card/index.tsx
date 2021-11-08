@@ -1,8 +1,16 @@
 import React from 'react'
+import { css, Theme } from '@emotion/react'
 
-const Card: React.FC = () => {
+const Wrap = (theme: Theme) => css`
+  background-color: ${theme.common.white};
+  box-shadow: ${theme.style.shadow};
+  border-radius: 10px;
+`
+const Card: React.FC = (props) => {
   return (
-    <div>Hello World</div>
+    <div css={Wrap}>
+      {props.children}
+    </div>
   )
 }
 

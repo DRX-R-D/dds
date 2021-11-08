@@ -3,6 +3,11 @@ import { css } from '@emotion/react'
 const gaps = [0, 1, 2, 3, 4, 5]
 
 export default css`
+  .fill {
+    .width: { width: 100%; }
+    .height: { height: 100%; }
+  }
+
   ${gaps.map((gap) => `
     .mt-${gap} { margin-top: ${gap * 5}px; }
     .mr-${gap} { margin-right: ${gap * 5}px; }

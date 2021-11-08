@@ -1,17 +1,33 @@
 import React from 'react'
 import { css, Theme } from '@emotion/react'
 
-const Wrap = (theme: Theme) => css`
+export interface IProps {
+  color?: string
+  className?: string
+  border?: boolean
+}
+
+const BorderCss = (props: IProps, theme: Theme) => css`
+  box-shadow: unset;
+  border: 2px solid ${props.color || theme.common.primary}; 
+`
+const WrapCss = (props: IProps) => (theme: Theme) => css`
   background-color: ${theme.common.white};
   box-shadow: ${theme.style.shadow};
   border-radius: 10px;
+  
+  ${props.border && BorderCss(props, theme)}
 `
-const Card: React.FC = (props) => {
+const Card: React.FC<IProps> = (props) => {
   return (
-    <div css={Wrap}>
+    <div css={WrapCss(props)}>
       {props.children}
     </div>
   )
+}
+
+Card.defaultProps = {
+  border: false
 }
 
 export default Card

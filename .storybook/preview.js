@@ -3,7 +3,7 @@ import { Style } from '~/component'
 export const decorators = [
   Story => (
     <Style>
-      <div className="fill width height">
+      <div className="fill width height pb-5">
         <Story />
       </div>
     </Style>

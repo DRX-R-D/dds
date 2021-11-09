@@ -27,10 +27,9 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
   }
 `
 const Badge: React.FC<IProps> = (props) => {
-  console.log(props)
   return (
     <div css={WrapCss(props)}>
-      <div className="badge d-flex ai-center jc-center">
+      <div className="badge d-flex ai-center jc-center pa-2">
         {props.content}
       </div>
       {props.children}
@@ -39,8 +38,8 @@ const Badge: React.FC<IProps> = (props) => {
 }
 
 Badge.defaultProps = {
-  top: true,
-  right: true,
+  top: false,
+  right: false,
   bottom: false,
   left: false
 }

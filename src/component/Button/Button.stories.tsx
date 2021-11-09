@@ -25,21 +25,38 @@ const Default: Story<IProps> = (args) => (
 const Template: Story<IProps> = () => {
   return (
     <>
-      {['Default', 'Rounded'].map((type) => (
+      {['Default', 'Rounded', 'Border', 'Tile'].map((type) => (
         <Sheet width={500} className="pa-5 mt-5" color="#fff">
           <h3 className="mb-3">{type}</h3>
           <div className="d-flex ai-end jc-space-around">
             <div>
-              <Default rounded={type === 'Rounded'} />
+              <Default
+                border={type === 'Border'}
+                rounded={type === 'Rounded'}
+                tile={type === 'Tile'}
+              />
               <h5 className="text--center mt-2">Default Size</h5>
             </div>
             <div>
-              <Default rounded={type === 'Rounded'} small />
+              <Default
+                border={type === 'Border'}
+                rounded={type === 'Rounded'}
+                tile={type === 'Tile'}
+                small
+              />
               <h5 className="text--center mt-2">Small Size</h5>
             </div>
           </div>
         </Sheet>
       ))}
+      <Sheet width={500} className="pa-5 mt-5" color="#fff">
+        <h3 className="mb-3">Color</h3>
+        <div className="d-flex ai-end jc-space-around">
+          <Default color="red" />
+          <Default color="green" border />
+          <Default color="purple" rounded />
+        </div>
+      </Sheet>
     </>
   )
 }

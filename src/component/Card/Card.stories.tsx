@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Component, { IProps }  from './'
+import { Sheet } from '../'
 
 export default {
   title: 'Component/UI/Card',
@@ -25,12 +26,12 @@ const Default: Story<IProps> = (args) => (
 const Template: Story<IProps> = () => {
   return (
     <>
-      <div>
+      <Sheet className="pa-5 mb-5" color="#FAFAFA">
         <Default />
-      </div>
-      <div>
+      </Sheet>
+      <Sheet className="pa-5" color="#FAFAFA">
         <Default border />
-      </div>
+      </Sheet>
       {/*<h2>Default</h2>*/}
       {/*<Sheet width={400} className="mt-2 mb-5">*/}
       {/*  <h4>Only Content</h4>*/}

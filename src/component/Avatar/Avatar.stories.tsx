@@ -9,7 +9,7 @@ export default {
   decorators: [
     (Story) => (
       <>
-        <h1>Badge</h1>
+        <h1>Avatar</h1>
         <Divider className="mb-5 mt-5" />
         <Story />
       </>

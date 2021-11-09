@@ -6,6 +6,9 @@ export interface IProps {
   rounded?: boolean
   onClick?: Function
   className?: string
+  border?: boolean
+  tile?: boolean
+  color?: string
 }
 
 const SmallCss = (props: IProps) => css`
@@ -15,8 +18,16 @@ const SmallCss = (props: IProps) => css`
   padding: 0 22px;
   border-radius: ${props.rounded ? 27.5 : 10}px;
 `
+const BorderCss = (props: IProps, theme: Theme) => css`
+  background-color: transparent;
+  border: 2px solid ${props.color || theme.common.primary};
+  color: ${props.color || theme.common.primary};
+`
+const TileCss = () => css`
+  border-radius: 0;
+`
 const WrapCss = (props: IProps) => (theme: Theme) => css`
-  background-color: ${theme.common.primary};
+  background-color: ${props.color || theme.common.primary};
   height: 50px;
   padding: 0 35px;
   border-radius: ${props.rounded ? 25 : 10}px;
@@ -26,6 +37,8 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
   min-width: 110px;
   
   ${props.small && SmallCss(props)}
+  ${props.border && BorderCss(props, theme)}
+  ${props.tile && TileCss()}
 `
 const Button: React.FC<IProps> = (props) => {
   return (
@@ -37,7 +50,9 @@ const Button: React.FC<IProps> = (props) => {
 
 Button.defaultProps = {
   small: false,
-  rounded: false
+  rounded: false,
+  tile: false,
+  border: false,
 }
 
 export default Button

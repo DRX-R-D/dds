@@ -1,7 +1,7 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Component, { IProps } from '.'
-import { Divider, Avatar } from '../'
+import { Divider, Avatar, Sheet } from '../'
 
 export default {
   title: 'Component/UI/Badge',
@@ -10,20 +10,25 @@ export default {
     (Story) => (
       <>
         <h1>Badge</h1>
-        <Divider />
+        <Divider className="mb-5 mt-5" />
         <Story />
       </>
     )
   ]
 } as Meta
 
-const Default: Story<IProps> = (args) => (
-  <Component
-    {...args}
-    content={<>1</>}
-  >
-    <Avatar src="https://cdn.pixabay.com/photo/2014/09/19/21/47/chihuahua-453063_960_720.jpg" />
-  </Component>
+export const Badge: Story<IProps> = (args) => (
+  <>
+    <Sheet color="#fff" width={500} className="pa-5">
+      <h3 className="mb-3">Default</h3>
+      <div className="d-flex">
+        <Component
+          content={<>1</>}
+          {...args}
+        >
+          <Avatar src="https://cdn.pixabay.com/photo/2014/09/19/21/47/chihuahua-453063_960_720.jpg" />
+        </Component>
+      </div>
+    </Sheet>
+  </>
 )
-
-export const Badge: Story<IProps> = (args) => <Default {...args} />

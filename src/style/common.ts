@@ -1,12 +1,22 @@
 import { css } from '@emotion/react'
 
 const gaps = [0, 1, 2, 3, 4, 5]
+const flexOption = ['center', 'start', 'end', 'space-between', 'space-around']
 
 export default css`
+  .d-flex {
+    display: flex;
+  }
+
   .fill {
     .width: { width: 100%; }
     .height: { height: 100%; }
   }
+  
+  ${flexOption.map((item) => `
+    .ai-${item} { align-items: ${item}; }
+    .jc-${item} { justify-content: ${item}; }
+  `)}
 
   ${gaps.map((gap) => `
     .mt-${gap} { margin-top: ${gap * 5}px; }

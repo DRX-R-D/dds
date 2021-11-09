@@ -26,6 +26,8 @@ export default css`
   p {
     font-weight: 400;
     font-family: 'Noto Sans KR', sans-serif;
-    --letter-spacing: -15px;
+  }
+  table {
+    border-collapse: collapse;
   }
 `

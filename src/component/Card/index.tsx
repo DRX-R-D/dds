@@ -21,7 +21,9 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
 const Card: React.FC<IProps> = (props) => {
   return (
     <div css={WrapCss(props)}>
-      {props.children}
+      <div className="pa-4">
+        {props.children}
+      </div>
     </div>
   )
 }

@@ -1,14 +1,18 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Component, { IProps }  from './'
-import { Sheet } from '../'
+import { Divider, Sheet } from '../'
 
 export default {
   title: 'Component/UI/Card',
   component: Component,
   decorators: [
     (Story) => (
-      <Story />
+      <>
+        <h1>Card</h1>
+        <Divider className="mb-5 mt-5" />
+        <Story />
+      </>
     )
   ],
 } as Meta
@@ -26,27 +30,12 @@ const Default: Story<IProps> = (args) => (
 const Template: Story<IProps> = () => {
   return (
     <>
-      <Sheet className="pa-5 mb-5" color="#FAFAFA">
-        <Default />
-      </Sheet>
-      <Sheet className="pa-5" color="#FAFAFA">
-        <Default border />
-      </Sheet>
-      {/*<h2>Default</h2>*/}
-      {/*<Sheet width={400} className="mt-2 mb-5">*/}
-      {/*  <h4>Only Content</h4>*/}
-      {/*  <Default className="mt-2 mb-5" />*/}
-      {/*  <h4>With Title</h4>*/}
-      {/*  <Default title="Hello World" className="mt-2" />*/}
-      {/*</Sheet>*/}
-      {/*<h2>Border</h2>*/}
-      {/*<Sheet width={400} className="mt-2 mb-5">*/}
-      {/*  <Default border />*/}
-      {/*</Sheet>*/}
-      {/*<h2>Cover Image</h2>*/}
-      {/*<Sheet width={400} className="mt-2 mb-5">*/}
-      {/*  <Default cover="https://cdn.pixabay.com/photo/2017/08/01/00/44/laptop-2562361_1280.jpg" />*/}
-      {/*</Sheet>*/}
+      {['Default', 'Border'].map((type) => (
+        <Sheet width={500} className="pa-5 mt-5" color="#fff">
+          <h3 className="mb-3">{type}</h3>
+          <Default border={type === 'Border'} />
+        </Sheet>
+      ))}
     </>
   )
 }

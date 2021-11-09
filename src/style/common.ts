@@ -32,6 +32,10 @@ export default css`
     .pa-${gap} { padding: ${gap * 5}px; }
   `)}
   
+  .text--center {
+    text-align: center;
+  }
+  
   h1 {
     font-size: 40px;
   }

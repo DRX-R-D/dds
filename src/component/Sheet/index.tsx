@@ -6,12 +6,19 @@ export interface IProps {
   className?: string
   width?: number
   height?: number
+  border?: boolean
 }
 
+const BorderCss = (props: IProps, theme: Theme) => css`
+  background-color: transparent;
+  border: 1px solid ${props.color || theme.common.grey};
+`
 const WrapCss = (props: IProps) => (theme: Theme) => css`
   background-color: ${props.color || theme.common.grey};
   width: ${props.width ? `${props.width}px` : 'auto'};
   height: ${props.height ? `${props.height}px` : 'auto'};
+  
+  ${props.border && BorderCss(props, theme)}
 `
 const Sheet: React.FC<IProps> = (props) => {
   return (
@@ -19,6 +26,10 @@ const Sheet: React.FC<IProps> = (props) => {
       {props.children}
     </div>
   )
+}
+
+Sheet.defaultProps = {
+  border: false,
 }
 
 export default Sheet

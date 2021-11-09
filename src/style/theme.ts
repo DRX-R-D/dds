@@ -7,7 +7,7 @@ const theme: Theme = {
     white: '#fff',
     black: '#000',
     secondary: '#ffba19',
-    grey: '#ECECEC',
+    grey: '#CCC',
   },
   style: {
     shadow: '0px 4px 30px rgba(0, 0, 0, 0.08)'

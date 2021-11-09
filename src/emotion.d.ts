@@ -3,6 +3,7 @@ import '@emotion/react'
 declare module '@emotion/react' {
   export interface Theme {
     common: {
+      background: string
       primary: string
       white: string
       black: string

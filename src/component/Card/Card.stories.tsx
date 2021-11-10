@@ -31,7 +31,7 @@ const Template: Story<IProps> = () => {
   return (
     <>
       {['Default', 'Border'].map((type) => (
-        <Sheet width={500} className="pa-5 mt-5" color="#fff">
+        <Sheet width={500} className="pa-5 mt-5" color="#fff" key={type}>
           <h3 className="mb-3">{type}</h3>
           <Default border={type === 'Border'} />
         </Sheet>

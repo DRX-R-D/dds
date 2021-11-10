@@ -28,7 +28,7 @@ const Template: Story<IProps> = (args) => {
   return (
     <>
       {['Default', 'Tile'].map((type) => (
-        <Sheet width={500} className="pa-5 mt-5" color="#fff">
+        <Sheet width={500} className="pa-5 mt-5" color="#fff" key={type}>
           <h3 className="mb-3">{type}</h3>
           <div className="d-flex ai-end jc-space-around">
             <div>

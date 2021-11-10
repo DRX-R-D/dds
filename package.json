@@ -9,7 +9,7 @@
     "build": "rm -rf ./dist && yarn rollup -c && tsc --emitDeclarationOnly",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o ./docs"
   },
   "keywords": [
     "react",

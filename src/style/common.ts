@@ -9,8 +9,8 @@ export default css`
   }
 
   .fill {
-    .width: { width: 100%; }
-    .height: { height: 100%; }
+    &.width { width: 100%; }
+    &.height { height: 100%; }
   }
   
   ${flexOption.map((item) => `

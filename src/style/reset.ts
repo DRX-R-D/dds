@@ -16,11 +16,13 @@ export default css`
     text-decoration: none;
     color: inherit;
   }
-  button {
+  input, button {
     border: 0;
     background-color: transparent;
+    &:focus-visible,
     &:active {
       outline: 0;
+      border: 0;
     }
   }
   p {

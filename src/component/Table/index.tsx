@@ -9,13 +9,20 @@ export interface IProps {
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
-  .header {
+  .table {
     max-width: max-content;
     border-radius: 10px;
     overflow: auto;
-    table {
-      background-color: ${props.color || theme.common.primary};
+    .table-wrap {
       width: max-content;
+      table {
+        width: max-content;
+      }
+    }
+  }
+  .header {
+    background-color: ${props.color || theme.common.primary};
+    table {
       thead {
         tr {
           th {
@@ -27,10 +34,7 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
     }
   }
   .body {
-    max-width: max-content;
     box-shadow: ${theme.style.shadow};
-    border-radius: 10px;
-    overflow: auto;
     table {
       background-color: ${theme.common.white};
       width: max-content;
@@ -57,8 +61,8 @@ const Table: React.FC<IProps> = (props) => {
     if (header.current && body.current) {
       const thead = header.current.querySelector('thead') as HTMLTableSectionElement
       const tbody = body.current.querySelector('tbody') as HTMLTableSectionElement
-      const theadRow = thead.children[0] as HTMLTableRowElement
-      const tbodyRow = tbody.children[0] as HTMLTableRowElement
+      const [theadRow] = [...thead.children] as HTMLTableRowElement[]
+      const [tbodyRow] = [...tbody.children] as HTMLTableRowElement[]
 
       [...theadRow.cells].forEach((cell, index) => {
         const thWidth = Math.round(cell.clientWidth) + 1
@@ -68,8 +72,8 @@ const Table: React.FC<IProps> = (props) => {
           cell.style.width = `${thWidth}px`
           tbodyRow.cells[index].style.width = `${thWidth}px`
         } else {
-          tbodyRow.cells[index].style.width = `${tdWidth}px`
           cell.style.width = `${tdWidth}px`
+          tbodyRow.cells[index].style.width = `${tdWidth}px`
         }
       })
     }
@@ -77,72 +81,76 @@ const Table: React.FC<IProps> = (props) => {
 
   return (
     <div css={WrapCss(props)}>
-      <div className="header" ref={header} onScroll={onTableScroll}>
-        <table>
-          <thead>
-          <tr>
-            {
-              props.headers
-                .map(
-                  (header) => typeof header === 'string'
-                    ? (
-                      <th key={header}>
-                        <div className="pl-5 pr-5">
-                          {header}
-                        </div>
-                      </th>
-                    )
-                    : (
-                      <th key={header.key}>
-                        <div className="pl-5 pr-5">
-                          {header.name}
-                        </div>
-                      </th>
-                    )
-                )
-            }
-          </tr>
-          </thead>
-        </table>
-      </div>
-      <div className="body mt-3" ref={body} onScroll={onTableScroll}>
-        <table>
-          <tbody>
-          {
-            React.Children.toArray(
-              props.data
-                .map(
-                  (item) => (
-                    <tr>
-                      {
-                        React.Children.toArray(
-                          props.headers
-                            .map(
-                              (header) => typeof header === 'string'
-                                ? (
-                                  <td>
-                                    <div className="pl-5 pr-5 pb-3 pt-3 text--center">
-                                      {item[header]}
-                                    </div>
-                                  </td>
-                                )
-                                : (
-                                  <td>
-                                    <div className="pl-5 pr-5 pb-3 pt-3 text--center">
-                                      {item[header.key]}
-                                    </div>
-                                  </td>
-                                )
-                            )
-                        )
-                      }
-                    </tr>
+      <div className="table header" ref={header} onScroll={onTableScroll}>
+        <div className="table-wrap pl-5 pr-5">
+          <table>
+            <thead>
+            <tr>
+              {
+                props.headers
+                  .map(
+                    (header) => typeof header === 'string'
+                      ? (
+                        <th key={header}>
+                          <div className="pl-5 pr-5">
+                            {header}
+                          </div>
+                        </th>
+                      )
+                      : (
+                        <th key={header.key}>
+                          <div className="pl-5 pr-5">
+                            {header.name}
+                          </div>
+                        </th>
+                      )
                   )
-                )
-            )
-          }
-          </tbody>
-        </table>
+              }
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div className="table body mt-3" ref={body} onScroll={onTableScroll}>
+        <div className="table-wrap pl-5 pr-5">
+          <table>
+            <tbody>
+            {
+              React.Children.toArray(
+                props.data
+                  .map(
+                    (item) => (
+                      <tr>
+                        {
+                          React.Children.toArray(
+                            props.headers
+                              .map(
+                                (header) => typeof header === 'string'
+                                  ? (
+                                    <td>
+                                      <div className="pl-5 pr-5 pb-3 pt-3 text--center">
+                                        {item[header]}
+                                      </div>
+                                    </td>
+                                  )
+                                  : (
+                                    <td>
+                                      <div className="pl-5 pr-5 pb-3 pt-3 text--center">
+                                        {item[header.key]}
+                                      </div>
+                                    </td>
+                                  )
+                              )
+                          )
+                        }
+                      </tr>
+                    )
+                  )
+              )
+            }
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )

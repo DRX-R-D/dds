@@ -7,10 +7,11 @@ export interface IProps {
   tile?: boolean
   src: string
   className?: string
+  color?: string
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
-  background-color: ${theme.common.grey};
+  background-color: ${props.color || theme.common.grey};
   border-radius: ${props.tile ? 0 : 50}%;
   width: ${props.size}px;
   height: ${props.size}px;

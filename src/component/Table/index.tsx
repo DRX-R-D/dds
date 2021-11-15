@@ -78,7 +78,7 @@ const Table: React.FC<IProps> = (props) => {
         }
       })
     }
-  }, [header, body])
+  }, [header, body, props.headers, props.data])
 
   return (
     <div css={WrapCss(props)} className={props.className || ''}>

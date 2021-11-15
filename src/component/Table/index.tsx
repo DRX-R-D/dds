@@ -10,9 +10,13 @@ export interface IProps {
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
   .table {
-    width: fit-content;
     border-radius: 10px;
     overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .table-wrap {
       width: max-content;
       table {
@@ -34,9 +38,9 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
     }
   }
   .body {
+    background-color: ${theme.common.white};
     box-shadow: ${theme.style.shadow};
     table {
-      background-color: ${theme.common.white};
       width: max-content;
       thead {
         tr {
@@ -65,22 +69,19 @@ const Table: React.FC<IProps> = (props) => {
       const [tbodyRow] = [...tbody.children] as HTMLTableRowElement[]
 
       [...theadRow.cells].forEach((cell, index) => {
-        const thWidth = Math.round(cell.clientWidth) + 1
-        const tdWidth = Math.round(tbodyRow.cells[index].clientWidth) + 1
-
-        if (thWidth > tdWidth) {
-          cell.style.width = `${thWidth}px`
-          tbodyRow.cells[index].style.width = `${thWidth}px`
+        if (cell.offsetWidth > tbodyRow.cells[index].offsetWidth) {
+          cell.style.minWidth = `${cell.offsetWidth}px`
+          tbodyRow.cells[index].style.minWidth = `${cell.offsetWidth}px`
         } else {
-          cell.style.width = `${tdWidth}px`
-          tbodyRow.cells[index].style.width = `${tdWidth}px`
+          cell.style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
+          tbodyRow.cells[index].style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
         }
       })
     }
   }, [header, body])
 
   return (
-    <div css={WrapCss(props)}>
+    <div css={WrapCss(props)} className={props.className || ''}>
       <div className="table header" ref={header} onScroll={onTableScroll}>
         <div className="table-wrap pl-5 pr-5 ml-auto mr-auto">
           <table>

@@ -64,6 +64,145 @@ export default {
   }
 } as Meta
 
+const tableHeader = [
+  { name: '프로필', key: 'profile' },
+  { name: '팀', key: 'team' },
+  { name: '현재 LP', key: 'currentLP' },
+  { name: '최고 LP', key: 'topLP' },
+  { name: '포지션', key: 'position' },
+  { name: '주 챔피언', key: 'champions' },
+  { name: '라인전 압도율', key: 'laneWinRate' },
+  { name: '승률', key: 'winRate' },
+  { name: 'GD@15', key: 'gd' },
+  { name: 'CSD@15', key: 'csd' },
+  { name: 'XPD@15', key: 'xpd' },
+]
+const tableData = [
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
+          <p>clear77</p>
+        </div>
+      </div>
+    ),
+    team: 'CN',
+    currentLP: '161점',
+    topLP: '236',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '123',
+    xpd: '123',
+  },
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
+          <p>clear77</p>
+        </div>
+      </div>
+    ),
+    team: 'CN',
+    currentLP: '161점',
+    topLP: '236',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '123',
+    xpd: '123',
+  },
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
+          <p>clear77</p>
+        </div>
+      </div>
+    ),
+    team: 'CN',
+    currentLP: '161점',
+    topLP: '236',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '123',
+    xpd: '123',
+  },
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
+          <p>clear77</p>
+        </div>
+      </div>
+    ),
+    team: 'CN',
+    currentLP: '161점',
+    topLP: '236',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '123',
+    xpd: '123',
+  },
+]
 const Default: Story<IProps> = (args) => (
   <Component {...args} />
 )
@@ -71,9 +210,10 @@ const Default: Story<IProps> = (args) => (
 const Template: Story<IProps> = (args) => {
   return (
     <>
-      <Sheet className="pa-5 mt-5" color="#fff">
+      <Sheet className="pa-5 mt-5" width={800}>
         <h3 className="mb-3">Default</h3>
         <Default {...args} />
+        <Default className="mt-5" headers={tableHeader} data={tableData} />
       </Sheet>
     </>
   )

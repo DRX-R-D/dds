@@ -16,7 +16,8 @@ export default css`
     text-decoration: none;
     color: inherit;
   }
-  input, button {
+  input, button, select {
+    appearance: none;
     border: 0;
     background-color: transparent;
     &:focus-visible,

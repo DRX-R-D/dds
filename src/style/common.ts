@@ -6,6 +6,12 @@ const flexOption = ['center', 'start', 'end', 'space-between', 'space-around']
 export default css`
   .d-flex {
     display: flex;
+    &.dir-column {
+      flex-direction: column;
+    }
+    .flex-1 {
+      flex: 1;
+    }
   }
 
   .fill {

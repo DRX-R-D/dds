@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import Component, { IProps } from './'
 import { Divider, Sheet, Avatar } from '../'
@@ -84,11 +84,70 @@ const tableData = [
         <Avatar src="" size={50} />
         <div>
           <p>송현민</p>
+          <p>12344</p>
+        </div>
+      </div>
+    ),
+    team: 'DRXB',
+    currentLP: '161점',
+    topLP: '23',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '123',
+    xpd: '123',
+  },
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
           <p>clear77</p>
         </div>
       </div>
     ),
     team: 'CN',
+    currentLP: '161점',
+    topLP: '236',
+    position: (
+      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
+    ),
+    champions: (
+      <div className="d-flex">
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar className="mr-2" src="" size={30} />
+        <Avatar src="" size={30} />
+      </div>
+    ),
+    laneWinRate: '+ 113.1',
+    winRate: '- 23.1',
+    gd: '+ 151.2',
+    csd: '12',
+    xpd: '123',
+  },
+  {
+    profile: (
+      <div className="d-flex">
+        <Avatar src="" size={50} />
+        <div>
+          <p>송현민</p>
+          <p>cleㄹㄹㅁㅈㄷar77</p>
+        </div>
+      </div>
+    ),
+    team: 'DRXA',
     currentLP: '161점',
     topLP: '236',
     position: (
@@ -128,9 +187,6 @@ const tableData = [
     champions: (
       <div className="d-flex">
         <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
         <Avatar src="" size={30} />
       </div>
     ),
@@ -138,69 +194,7 @@ const tableData = [
     winRate: '- 23.1',
     gd: '+ 151.2',
     csd: '123',
-    xpd: '123',
-  },
-  {
-    profile: (
-      <div className="d-flex">
-        <Avatar src="" size={50} />
-        <div>
-          <p>송현민</p>
-          <p>clear77</p>
-        </div>
-      </div>
-    ),
-    team: 'CN',
-    currentLP: '161점',
-    topLP: '236',
-    position: (
-      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
-    ),
-    champions: (
-      <div className="d-flex">
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar src="" size={30} />
-      </div>
-    ),
-    laneWinRate: '+ 113.1',
-    winRate: '- 23.1',
-    gd: '+ 151.2',
-    csd: '123',
-    xpd: '123',
-  },
-  {
-    profile: (
-      <div className="d-flex">
-        <Avatar src="" size={50} />
-        <div>
-          <p>송현민</p>
-          <p>clear77</p>
-        </div>
-      </div>
-    ),
-    team: 'CN',
-    currentLP: '161점',
-    topLP: '236',
-    position: (
-      <Avatar src="https://drx-image.s3.ap-northeast-2.amazonaws.com/lane/TOP.png" size={40} tile />
-    ),
-    champions: (
-      <div className="d-flex">
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar className="mr-2" src="" size={30} />
-        <Avatar src="" size={30} />
-      </div>
-    ),
-    laneWinRate: '+ 113.1',
-    winRate: '- 23.1',
-    gd: '+ 151.2',
-    csd: '123',
-    xpd: '123',
+    xpd: '13',
   },
 ]
 const Default: Story<IProps> = (args) => (
@@ -208,12 +202,27 @@ const Default: Story<IProps> = (args) => (
 )
 
 const Template: Story<IProps> = (args) => {
+  const [list, setList] = useState<any[]>([])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setList([...tableData, ...tableData, ...tableData])
+    }, 3000)
+  }, [])
+
   return (
     <>
       <Sheet className="pa-5 mt-5" width={800}>
         <h3 className="mb-3">Default</h3>
         <Default {...args} />
-        <Default className="mt-5" headers={tableHeader} data={tableData} />
+      </Sheet>
+      <Sheet className="pa-5 mt-5 d-flex dir-column" width={800} height={500}>
+        <h3 className="mb-3">비동기</h3>
+        <Default
+          className="flex-1"
+          headers={tableHeader}
+          data={list}
+        />
       </Sheet>
     </>
   )

@@ -9,6 +9,7 @@ export interface IProps {
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
+  overflow: auto;
   .table {
     border-radius: 10px;
     overflow: auto;
@@ -55,9 +56,9 @@ const Table: React.FC<IProps> = (props) => {
 
   const onTableScroll = (event: React.WheelEvent<HTMLDivElement>) => {
     if (event.currentTarget === header.current) {
-      body.current?.scrollTo(event.currentTarget.scrollLeft, event.currentTarget.scrollTop)
+      body.current?.scrollTo(event.currentTarget.scrollLeft, body.current.scrollTop)
     } else if (event.currentTarget === body.current) {
-      header.current?.scrollTo(event.currentTarget.scrollLeft, event.currentTarget.scrollTop)
+      header.current?.scrollTo(event.currentTarget.scrollLeft, 0)
     }
   }
 
@@ -68,20 +69,22 @@ const Table: React.FC<IProps> = (props) => {
       const [theadRow] = [...thead.children] as HTMLTableRowElement[]
       const [tbodyRow] = [...tbody.children] as HTMLTableRowElement[]
 
-      [...theadRow.cells].forEach((cell, index) => {
-        if (cell.offsetWidth > tbodyRow.cells[index].offsetWidth) {
-          cell.style.minWidth = `${cell.offsetWidth}px`
-          tbodyRow.cells[index].style.minWidth = `${cell.offsetWidth}px`
-        } else {
-          cell.style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
-          tbodyRow.cells[index].style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
-        }
-      })
+      if (tbody.children.length) {
+        [...theadRow.cells].forEach((cell, index) => {
+          if (cell.offsetWidth > tbodyRow.cells[index].offsetWidth) {
+            cell.style.minWidth = `${cell.offsetWidth}px`
+            tbodyRow.cells[index].style.minWidth = `${cell.offsetWidth}px`
+          } else {
+            cell.style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
+            tbodyRow.cells[index].style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
+          }
+        })
+      }
     }
   }, [header, body, props.headers, props.data])
 
   return (
-    <div css={WrapCss(props)} className={props.className || ''}>
+    <div css={WrapCss(props)} className={`d-flex dir-column ${props.className || ''}`}>
       <div className="table header" ref={header} onScroll={onTableScroll}>
         <div className="table-wrap pl-5 pr-5 ml-auto mr-auto">
           <table>
@@ -112,11 +115,12 @@ const Table: React.FC<IProps> = (props) => {
           </table>
         </div>
       </div>
-      <div className="table body mt-3" ref={body} onScroll={onTableScroll}>
+      <div className="table body mt-3 flex-1" ref={body} onScroll={onTableScroll}>
         <div className="table-wrap pl-5 pr-5 ml-auto mr-auto">
           <table>
             <tbody>
             {
+              props.data.length ?
               React.Children.toArray(
                 props.data
                   .map(
@@ -147,7 +151,7 @@ const Table: React.FC<IProps> = (props) => {
                       </tr>
                     )
                   )
-              )
+              ) : <></>
             }
             </tbody>
           </table>

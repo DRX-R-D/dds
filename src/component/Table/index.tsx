@@ -10,7 +10,7 @@ export interface IProps {
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
   .table {
-    max-width: max-content;
+    width: fit-content;
     border-radius: 10px;
     overflow: auto;
     .table-wrap {
@@ -82,7 +82,7 @@ const Table: React.FC<IProps> = (props) => {
   return (
     <div css={WrapCss(props)}>
       <div className="table header" ref={header} onScroll={onTableScroll}>
-        <div className="table-wrap pl-5 pr-5">
+        <div className="table-wrap pl-5 pr-5 ml-auto mr-auto">
           <table>
             <thead>
             <tr>
@@ -112,7 +112,7 @@ const Table: React.FC<IProps> = (props) => {
         </div>
       </div>
       <div className="table body mt-3" ref={body} onScroll={onTableScroll}>
-        <div className="table-wrap pl-5 pr-5">
+        <div className="table-wrap pl-5 pr-5 ml-auto mr-auto">
           <table>
             <tbody>
             {

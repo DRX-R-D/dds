@@ -1,11 +1,22 @@
 import React from 'react'
 import { ThemeProvider, Global } from '@emotion/react'
-import { reset, theme, common } from '../style'
+import { font, reset, theme, common } from '../style'
 
-const Style: React.FC = (props) => {
+interface IProps {
+  global?: any[]
+}
+
+const Style: React.FC<IProps> = (props) => {
   return (
     <ThemeProvider theme={theme}>
-      <Global styles={[reset, common]} />
+      <Global
+        styles={[
+          font,
+          reset,
+          common,
+          ...(props.global || [])
+        ]}
+      />
       {props.children}
     </ThemeProvider>
   )

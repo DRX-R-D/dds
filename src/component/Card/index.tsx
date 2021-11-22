@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, Theme } from '@emotion/react'
 import Content, { IProps as IContentProps } from './Content'
-import Title, { IProps as ITitleProps } from './Content'
+import Title, { IProps as ITitleProps } from './Title'
 
 export interface IProps {
   color?: string

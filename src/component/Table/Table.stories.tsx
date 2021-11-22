@@ -201,7 +201,7 @@ const Default: Story<IProps> = (args) => (
   <Component {...args} />
 )
 
-const Template: Story<IProps> = (args) => {
+const Template: Story<IProps> = () => {
   const [list, setList] = useState<any[]>([])
 
   useEffect(() => {
@@ -212,11 +212,14 @@ const Template: Story<IProps> = (args) => {
 
   return (
     <>
-      <Sheet className="pa-5 mt-5" width={800}>
+      <Sheet width={500} className="pa-5 mt-5">
         <h3 className="mb-3">Default</h3>
-        <Default {...args} />
+        <Default
+          headers={tableHeader}
+          data={tableData}
+        />
       </Sheet>
-      <Sheet className="pa-5 mt-5 d-flex dir-column" width={800} height={500}>
+      <Sheet className="pa-5 mt-5 d-flex dir-column" width={500} height={500}>
         <h3 className="mb-3">비동기</h3>
         <Default
           className="flex-1"

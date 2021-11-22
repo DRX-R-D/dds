@@ -1,43 +1,80 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0'
-import Component, { IProps }  from './'
-import { Divider, Sheet } from '../'
+import Card, { IProps }  from './'
+import { Sheet } from '../'
 
 export default {
   title: 'Component/UI/Card',
-  component: Component,
+  component: Card,
   decorators: [
     (Story) => (
-      <>
-        <h1>Card</h1>
-        <Divider className="mb-5 mt-5" />
+      <Sheet width={400} color="transparent" className="ml-auto mr-auto">
         <Story />
-      </>
+      </Sheet>
     )
-  ],
+  ]
 } as Meta
 
-const Default: Story<IProps> = (args) => (
-  <Component {...args}>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Accusantium alias architecto aspernatur atque autem culpa ea
-      expedita facere harum incidunt ipsum magnam minus odio, perferendis,
-      praesentium reiciendis repellendus sequi voluptas?
-    </p>
-  </Component>
+export const Default: Story<IProps> = () => (
+  <Card>
+    <Card.Title>
+      Hello World
+    </Card.Title>
+    <Card.Content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium alias architecto aspernatur atque autem culpa ea
+        expedita facere harum incidunt ipsum magnam minus odio, perferendis,
+        praesentium reiciendis repellendus sequi voluptas?
+      </p>
+    </Card.Content>
+  </Card>
 )
-const Template: Story<IProps> = () => {
-  return (
-    <>
-      {['Default', 'Border'].map((type) => (
-        <Sheet width={500} className="pa-5 mt-5" color="#fff" key={type}>
-          <h3 className="mb-3">{type}</h3>
-          <Default border={type === 'Border'} />
-        </Sheet>
-      ))}
-    </>
-  )
-}
 
-export const Card = Template.bind({})
+export const Border: Story<IProps> = () => (
+  <Card border>
+    <Card.Title>
+      Hello World
+    </Card.Title>
+    <Card.Content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium alias architecto aspernatur atque autem culpa ea
+        expedita facere harum incidunt ipsum magnam minus odio, perferendis,
+        praesentium reiciendis repellendus sequi voluptas?
+      </p>
+    </Card.Content>
+  </Card>
+)
+
+export const Color: Story<IProps> = () => (
+  <Card color="#365599" dark>
+    <Card.Title>
+      Hello World
+    </Card.Title>
+    <Card.Content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium alias architecto aspernatur atque autem culpa ea
+        expedita facere harum incidunt ipsum magnam minus odio, perferendis,
+        praesentium reiciendis repellendus sequi voluptas?
+      </p>
+    </Card.Content>
+  </Card>
+)
+
+export const Flat: Story<IProps> = () => (
+  <Card color="#FFC743" dark flat>
+    <Card.Title>
+      Hello World
+    </Card.Title>
+    <Card.Content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusantium alias architecto aspernatur atque autem culpa ea
+        expedita facere harum incidunt ipsum magnam minus odio, perferendis,
+        praesentium reiciendis repellendus sequi voluptas?
+      </p>
+    </Card.Content>
+  </Card>
+)

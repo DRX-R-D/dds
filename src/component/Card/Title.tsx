@@ -2,14 +2,17 @@ import React from 'react'
 
 export interface IProps {
   className?: string
+  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
-const Content: React.FC<IProps> = (props) => {
+const Title: React.FC<IProps> = (props) => {
+  const Element: React.ReactType = props.type || 'h4'
+
   return (
-    <div className="pa-4">
+    <Element className="pl-4 pt-4 pr-4">
       {props.children}
-    </div>
+    </Element>
   )
 }
 
-export default Content
+export default Title

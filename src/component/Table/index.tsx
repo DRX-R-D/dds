@@ -1,11 +1,16 @@
 import React, { useRef, useEffect } from 'react'
 import { css, Theme } from '@emotion/react'
 
+type TypeHeaderItem = (string | { name: string, key: string | number })
+
 export interface IProps {
-  headers: (string | { name: string, key: string | number })[]
+  headers: TypeHeaderItem[]
   data: any[]
   className?: string
   color?: string
+  onHeadCellClick?: Function
+  onBodyRowClick?: Function
+  onBodyCellClick?: Function
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
@@ -33,6 +38,8 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
           th {
             height: 65px;
             color: ${theme.common.white};
+            
+            ${props.onHeadCellClick && 'pointer: cursor'};
           }
         }
       }
@@ -45,6 +52,10 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
       width: max-content;
       thead {
         tr {
+          ${props.onBodyRowClick && 'pointer: cursor'};
+          td {
+            ${props.onBodyCellClick && 'pointer: cursor'};
+          }
         }
       }
     }
@@ -61,6 +72,17 @@ const Table: React.FC<IProps> = (props) => {
       header.current?.scrollTo(event.currentTarget.scrollLeft, 0)
     }
   }
+  const onHeadCellClick = (header: TypeHeaderItem) => () => {
+    props.onHeadCellClick?.(header)
+  }
+  const onBodyRowClick = (data: any) => () => {
+    props.onBodyRowClick?.(data)
+  }
+  const onBodyCellClick = (data: any) => (event: React.MouseEvent<HTMLTableCellElement>) => {
+    event.stopPropagation()
+
+    props.onBodyCellClick?.(data)
+  }
 
   useEffect(() => {
     if (header.current && body.current) {
@@ -72,11 +94,15 @@ const Table: React.FC<IProps> = (props) => {
       if (tbody.children.length) {
         [...theadRow.cells].forEach((cell, index) => {
           if (cell.offsetWidth > tbodyRow.cells[index].offsetWidth) {
-            cell.style.minWidth = `${cell.offsetWidth}px`
-            tbodyRow.cells[index].style.minWidth = `${cell.offsetWidth}px`
+            const width = Math.ceil(cell.offsetWidth)
+
+            cell.style.minWidth = `${width}px`
+            tbodyRow.cells[index].style.minWidth = `${width}px`
           } else {
-            cell.style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
-            tbodyRow.cells[index].style.minWidth = `${tbodyRow.cells[index].offsetWidth}px`
+            const width = Math.ceil(tbodyRow.cells[index].offsetWidth)
+
+            cell.style.minWidth = `${width}px`
+            tbodyRow.cells[index].style.minWidth = `${width}px`
           }
         })
       }
@@ -95,14 +121,14 @@ const Table: React.FC<IProps> = (props) => {
                   .map(
                     (header) => typeof header === 'string'
                       ? (
-                        <th key={header}>
+                        <th onClick={onHeadCellClick(header)} key={header}>
                           <div className="pl-5 pr-5">
                             {header}
                           </div>
                         </th>
                       )
                       : (
-                        <th key={header.key}>
+                        <th onClick={onHeadCellClick(header)} key={header.key}>
                           <div className="pl-5 pr-5">
                             {header.name}
                           </div>
@@ -125,21 +151,21 @@ const Table: React.FC<IProps> = (props) => {
                 props.data
                   .map(
                     (item) => (
-                      <tr>
+                      <tr onClick={onBodyRowClick(item)}>
                         {
                           React.Children.toArray(
                             props.headers
                               .map(
                                 (header) => typeof header === 'string'
                                   ? (
-                                    <td>
+                                    <td onClick={onBodyCellClick(item[header])}>
                                       <div className="pl-5 pr-5 pb-3 pt-3 text--center">
                                         {item[header]}
                                       </div>
                                     </td>
                                   )
                                   : (
-                                    <td>
+                                    <td onClick={onBodyCellClick(item[header.key])}>
                                       <div className="pl-5 pr-5 pb-3 pt-3 text--center">
                                         {item[header.key]}
                                       </div>

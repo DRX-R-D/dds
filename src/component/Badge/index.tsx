@@ -7,6 +7,7 @@ export interface IProps {
   bottom?: boolean
   left?: boolean
   content?: React.ReactNode
+  className?: string
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
@@ -28,7 +29,7 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
 `
 const Badge: React.FC<IProps> = (props) => {
   return (
-    <div css={WrapCss(props)}>
+    <div css={WrapCss(props)} className={props.className || ''}>
       <div className="badge d-flex ai-center jc-center pa-2">
         {props.content}
       </div>

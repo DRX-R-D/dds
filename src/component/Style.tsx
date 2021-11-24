@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeProvider, Global } from '@emotion/react'
-import { font, reset, theme, common } from '../style'
+import { reset, theme, common } from '../style'
 
 interface IProps {
   global?: any[]
@@ -11,7 +11,6 @@ const Style: React.FC<IProps> = (props) => {
     <ThemeProvider theme={theme}>
       <Global
         styles={[
-          font,
           reset,
           common,
           ...(props.global || [])

@@ -2,12 +2,16 @@ import { css } from '@emotion/react'
 
 const gaps = [0, 1, 2, 3, 4, 5, 'auto']
 const flexOption = ['center', 'start', 'end', 'space-between', 'space-around']
+const textOption = ['center', 'left', 'right']
 
 export default css`
   .d-flex {
     display: flex;
     &.dir-column {
       flex-direction: column;
+    }
+    &.flex-wrap {
+      flex-wrap: wrap;
     }
     .flex-1 {
       flex: 1;
@@ -53,14 +57,28 @@ export default css`
     `
   )}
   
-  .text--center {
-    text-align: center;
-  }
+  ${textOption.map((option) => `.text--${option} { text-align: ${option}; }`)}
   
   h1 {
-    font-size: 40px;
+    font-size: 35px;
   }
   h2 {
-    font-size: 28px;
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  h4 {
+    font-size: 22px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+  
+  p {
+    font-size: 12px;
   }
 `

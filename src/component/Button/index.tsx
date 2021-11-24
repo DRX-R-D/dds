@@ -5,9 +5,12 @@ export interface IProps {
   small?: boolean
   rounded?: boolean
   onClick?: Function
+  onFocus?: Function
+  onBlur?: Function
   className?: string
   border?: boolean
   tile?: boolean
+  text?: boolean
   color?: string
 }
 
@@ -17,6 +20,11 @@ const SmallCss = (props: IProps) => css`
   min-width: 90px;
   padding: 0 22px;
   border-radius: ${props.rounded ? 27.5 : 10}px;
+`
+const TextCss = (props: IProps, theme: Theme) => css`
+  background-color: transparent;
+  border: 0;
+  color: ${props.color || theme.common.primary};
 `
 const BorderCss = (props: IProps, theme: Theme) => css`
   background-color: transparent;
@@ -38,11 +46,28 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
   
   ${props.small && SmallCss(props)}
   ${props.border && BorderCss(props, theme)}
+  ${props.text && TextCss(props, theme)}
   ${props.tile && TileCss()}
 `
 const Button: React.FC<IProps> = (props) => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    props.onClick?.(event)
+  }
+  const onFocus = (event: React.FocusEvent<HTMLButtonElement>) => {
+    props.onFocus?.(event)
+  }
+  const onBlur = (event: React.FocusEvent<HTMLButtonElement>) => {
+    props.onBlur?.(event)
+  }
+
   return (
-    <button css={WrapCss(props)} className={props.className || ''}>
+    <button
+      onClick={onClick}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      css={WrapCss(props)}
+      className={props.className || ''}
+    >
       {props.children}
     </button>
   )

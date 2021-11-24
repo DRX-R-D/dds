@@ -1,6 +1,6 @@
 import React from 'react';
 import { IProps as IContentProps } from './Content';
-import { IProps as ITitleProps } from './Content';
+import { IProps as ITitleProps } from './Title';
 export interface IProps {
     color?: string;
     className?: string;

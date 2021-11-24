@@ -25,3 +25,5 @@ yarn-error.log*
 .idea
 storybook-static
 docs
+
+font

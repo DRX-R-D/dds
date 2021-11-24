@@ -11,6 +11,7 @@ export default css`
     font-size: 14px;
     font-weight: 400;
     font-family: 'Noto Sans KR', sans-serif;
+    color: #585858;
   }
   a {
     text-decoration: none;
@@ -26,11 +27,17 @@ export default css`
       border: 0;
     }
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
   p {
     font-weight: 400;
     font-family: 'Noto Sans KR', sans-serif;
   }
   table {
     border-collapse: collapse;
+  }
+  ul, ol {
+    list-style: none;
   }
 `

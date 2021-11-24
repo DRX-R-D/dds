@@ -9,7 +9,7 @@ const Title: React.FC<IProps> = (props) => {
   const Element: React.ReactType = props.type || 'h4'
 
   return (
-    <Element className="pl-4 pt-4 pr-4">
+    <Element className={`pl-4 pt-4 pr-4 ${props.className || ''}`}>
       {props.children}
     </Element>
   )

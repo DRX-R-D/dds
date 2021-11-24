@@ -23,3 +23,5 @@ jest.config.json
 rollup.config.js
 
 Dockerfile
+
+font

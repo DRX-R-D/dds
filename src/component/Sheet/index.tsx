@@ -14,9 +14,11 @@ const BorderCss = (props: IProps, theme: Theme) => css`
   border: 1px solid ${props.color || theme.common.grey};
 `
 const WrapCss = (props: IProps) => (theme: Theme) => css`
-  background-color: ${props.color || theme.common.grey};
+  background-color: ${props.color || theme.common.background};
   width: ${props.width ? `${props.width}px` : 'auto'};
   height: ${props.height ? `${props.height}px` : 'auto'};
+  min-width: ${props.width ? `${props.width}px` : 'unset'};
+  min-height: ${props.height ? `${props.height}px` : 'unset'};
   
   ${props.border && BorderCss(props, theme)}
 `

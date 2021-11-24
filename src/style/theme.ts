@@ -8,6 +8,7 @@ const theme: Theme = {
     black: '#000',
     secondary: '#ffba19',
     grey: '#CCC',
+    text: '#585858',
   },
   style: {
     shadow: '0px 4px 30px rgba(0, 0, 0, 0.08)'

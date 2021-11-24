@@ -10,7 +10,6 @@ export interface IProps {
     color?: string;
     onHeadCellClick?: Function;
     onBodyRowClick?: Function;
-    onBodyCellClick?: Function;
 }
 declare const Table: React.FC<IProps>;
 export default Table;

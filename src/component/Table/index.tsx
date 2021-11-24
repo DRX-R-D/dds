@@ -10,7 +10,6 @@ export interface IProps {
   color?: string
   onHeadCellClick?: Function
   onBodyRowClick?: Function
-  onBodyCellClick?: Function
 }
 
 const WrapCss = (props: IProps) => (theme: Theme) => css`
@@ -39,7 +38,7 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
             height: 65px;
             color: ${theme.common.white};
             
-            ${props.onHeadCellClick && 'pointer: cursor'};
+            ${props.onHeadCellClick && 'cursor: pointer'};
           }
         }
       }
@@ -50,11 +49,10 @@ const WrapCss = (props: IProps) => (theme: Theme) => css`
     box-shadow: ${theme.style.shadow};
     table {
       width: max-content;
-      thead {
+      tbody {
         tr {
-          ${props.onBodyRowClick && 'pointer: cursor'};
+          ${props.onBodyRowClick && 'cursor: pointer'};
           td {
-            ${props.onBodyCellClick && 'pointer: cursor'};
           }
         }
       }
@@ -77,11 +75,6 @@ const Table: React.FC<IProps> = (props) => {
   }
   const onBodyRowClick = (data: any) => () => {
     props.onBodyRowClick?.(data)
-  }
-  const onBodyCellClick = (data: any) => (event: React.MouseEvent<HTMLTableCellElement>) => {
-    event.stopPropagation()
-
-    props.onBodyCellClick?.(data)
   }
 
   useEffect(() => {
@@ -146,38 +139,39 @@ const Table: React.FC<IProps> = (props) => {
           <table>
             <tbody>
             {
-              props.data.length ?
-              React.Children.toArray(
-                props.data
-                  .map(
-                    (item) => (
-                      <tr onClick={onBodyRowClick(item)}>
-                        {
-                          React.Children.toArray(
-                            props.headers
-                              .map(
-                                (header) => typeof header === 'string'
-                                  ? (
-                                    <td onClick={onBodyCellClick(item[header])}>
-                                      <div className="pl-5 pr-5 pb-3 pt-3 text--center">
-                                        {item[header]}
-                                      </div>
-                                    </td>
-                                  )
-                                  : (
-                                    <td onClick={onBodyCellClick(item[header.key])}>
-                                      <div className="pl-5 pr-5 pb-3 pt-3 text--center">
-                                        {item[header.key]}
-                                      </div>
-                                    </td>
-                                  )
-                              )
-                          )
-                        }
-                      </tr>
+              props.data.length
+                ? React.Children.toArray(
+                  props.data
+                    .map(
+                      (item) => (
+                        <tr onClick={onBodyRowClick(item)}>
+                          {
+                            React.Children.toArray(
+                              props.headers
+                                .map(
+                                  (header) => typeof header === 'string'
+                                    ? (
+                                      <td>
+                                        <div className="pl-5 pr-5 pb-3 pt-3 text--center">
+                                          {item[header]}
+                                        </div>
+                                      </td>
+                                    )
+                                    : (
+                                      <td>
+                                        <div className="pl-5 pr-5 pb-3 pt-3 text--center">
+                                          {item[header.key]}
+                                        </div>
+                                      </td>
+                                    )
+                                )
+                            )
+                          }
+                        </tr>
+                      )
                     )
                   )
-              ) : <></>
+                : <></>
             }
             </tbody>
           </table>

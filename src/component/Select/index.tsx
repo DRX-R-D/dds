@@ -88,7 +88,7 @@ const Select: React.FC<IProps> = (props) => {
   }, [])
 
   return (
-    <div css={WrapCss(props)} className={props.className || ''}>
+    <div css={WrapCss()} className={props.className || ''}>
       <label className="fill width height">
         <input
           readOnly
